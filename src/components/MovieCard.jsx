@@ -9,10 +9,23 @@ const MovieCard = ({ movie }) => {
   const favorite = isFavorite(movie.id);
   const onFavouriteClick = (e) => {
     e.preventDefault();
+    const button = e.currentTarget;
+    const span = button.querySelector("span");
+
     if (favorite) {
       removeFromFavorites(movie.id);
     } else {
       addToFavorites(movie);
+    }
+
+    // Add animation to the span element
+    if (span) {
+      button.disabled = true;
+      span.classList.add("animate");
+      setTimeout(() => {
+        span.classList.remove("animate");
+        button.disabled = false;
+      }, 500);
     }
   };
 
@@ -36,7 +49,7 @@ const MovieCard = ({ movie }) => {
             className={`favorite-btn${favorite ? " active" : ""}`}
             onClick={onFavouriteClick}
           >
-            ❤️
+            <span>❤️</span>
           </button>
         </div>
       </div>
