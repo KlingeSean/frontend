@@ -61,7 +61,7 @@ function Home() {
   return (
     <>
       {popup && (
-        <div className="popup" onClick={clearPopup}>
+        <div className="popup slide-in-fwd-top" onClick={clearPopup}>
           {popup}
           <span className="close">❌</span>
         </div>
