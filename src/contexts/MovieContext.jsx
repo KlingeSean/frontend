@@ -6,6 +6,7 @@ export const useMovieContext = () => useContext(MovieContext);
 
 export const MovieProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
+  const [popup, setPopup] = useState(null);
 
   useEffect(() => {
     const storedFavs = localStorage.getItem("favorites");
@@ -19,10 +20,13 @@ export const MovieProvider = ({ children }) => {
 
   const addToFavorites = (movie) => {
     setFavorites((prev) => [...prev, movie]);
+    setPopup(`${movie.title} added to favorites!`); // Show popup
   };
 
   const removeFromFavorites = (movieId) => {
+    const movie = favorites.find((movie) => movie.id === movieId);
     setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+    setPopup(`Removed ${movie.title} from favorites!`); // Show popup
   };
 
   const isFavorite = (movieId) => {
@@ -34,6 +38,8 @@ export const MovieProvider = ({ children }) => {
     addToFavorites,
     removeFromFavorites,
     isFavorite,
+    popup,
+    setPopup,
   };
 
   return (
