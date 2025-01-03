@@ -49,7 +49,7 @@ const MovieCard = ({ movie }) => {
             className={`favorite-btn${favorite ? " active" : ""}`}
             onClick={onFavouriteClick}
           >
-            <span>❤️</span>
+            <span>♥</span>
           </button>
         </div>
       </div>
