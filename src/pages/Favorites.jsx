@@ -4,11 +4,14 @@ import { useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 const Favorites = () => {
   const { favorites, popup, setPopup } = useMovieContext();
+  const clearPopup = () => {
+    setPopup(null);
+  };
 
   useEffect(() => {
     if (popup) {
       const timer = setTimeout(() => {
-        setPopup(null); // Clear the popup after 5 seconds
+        clearPopup(); // Clear the popup after 5 seconds
       }, 5000);
 
       return () => clearTimeout(timer); // Cleanup the timer if popup changes
@@ -18,7 +21,12 @@ const Favorites = () => {
   if (favorites.length > 0) {
     return (
       <>
-        {popup && <div className="popup">{popup}</div>}
+        {popup && (
+          <div className="popup" onClick={clearPopup}>
+            {popup}
+            <span className="close">❌</span>
+          </div>
+        )}
         <div className="favorites">
           <h2>Your favorites</h2>
           <div className="movies-grid">

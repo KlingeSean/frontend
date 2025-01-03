@@ -44,10 +44,14 @@ function Home() {
     }
   };
 
+  const clearPopup = () => {
+    setPopup(null);
+  };
+
   useEffect(() => {
     if (popup) {
       const timer = setTimeout(() => {
-        setPopup(null); // Clear the popup after 5 seconds
+        clearPopup(); // Clear the popup after 5 seconds
       }, 5000);
 
       return () => clearTimeout(timer); // Cleanup the timer if popup changes
@@ -56,7 +60,12 @@ function Home() {
 
   return (
     <>
-      {popup && <div className="popup">{popup}</div>}
+      {popup && (
+        <div className="popup" onClick={clearPopup}>
+          {popup}
+          <span className="close">❌</span>
+        </div>
+      )}
       <div className="home">
         <form onSubmit={handleSearch} className="search-form">
           <input
