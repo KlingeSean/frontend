@@ -20,13 +20,13 @@ export const MovieProvider = ({ children }) => {
 
   const addToFavorites = (movie) => {
     setFavorites((prev) => [...prev, movie]);
-    setPopup(`${movie.title} added to favorites!`); // Show popup
+    setPopup(`"${movie.title}" added to favorites!`); // Show popup
   };
 
   const removeFromFavorites = (movieId) => {
     const movie = favorites.find((movie) => movie.id === movieId);
     setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
-    setPopup(`Removed ${movie.title} from favorites!`); // Show popup
+    setPopup(`Removed "${movie.title}" from favorites!`); // Show popup
   };
 
   const isFavorite = (movieId) => {
